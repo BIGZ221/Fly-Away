@@ -18,9 +18,11 @@ public class MapGenerator : MonoBehaviour {
     public MeshCollider meshCollider;
     public MeshRenderer meshRenderer;
 
+    public MeshData meshData;
+
     public void Start() {
         float[,] heightMap = HeightMapGeneration.generateHeightMap(width, height, seed, noiseScale, octaves, persistance, lacunarity, offset);
-        MeshData meshData = MeshGen.generateTerrainMeshData(heightMap, heightMultiplier, heightCurve);
+        meshData = MeshGen.generateTerrainMeshData(heightMap, heightMultiplier, heightCurve);
         Texture2D texture = TextureGenerator.generateTexture(heightMap, regions);
         Mesh mesh = meshData.createMesh();
         meshFilter.mesh = mesh;
